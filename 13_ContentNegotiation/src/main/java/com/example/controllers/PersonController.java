@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.data.vo.v1.PersonVO;
 import com.example.services.PersonServices;
+import com.example.util.MediaTypeCustom;
 
 @RestController
 @RequestMapping("/api/person/v1")
@@ -24,12 +25,12 @@ public class PersonController {
 	@Autowired
 	private PersonServices service;
 	
-	@GetMapping(value="/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	@GetMapping(value="/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaTypeCustom.APPLICATION_YML})
 	public PersonVO findById(@PathVariable(value = "id") Long id) {		
 		return service.findById(id);
 	}
 	
-	@GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	@GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, "application/x-yaml"})
 	public List<PersonVO> findAll() {		
 		return service.findAll();
 	}
