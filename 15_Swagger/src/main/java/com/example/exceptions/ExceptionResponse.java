@@ -1,4 +1,4 @@
-package com.example.demo.exceptions;
+package com.example.exceptions;
 
 import java.io.Serializable;
 import java.util.Date;
