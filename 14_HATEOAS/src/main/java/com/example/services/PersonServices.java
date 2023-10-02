@@ -38,7 +38,7 @@ public class PersonServices {
 				
 		var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No record found for this ID"));
 		var vo = DozerMapper.parseObject(entity, PersonVO.class);
-		vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());		
+		vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());		
 		return vo;
 	}
 	
