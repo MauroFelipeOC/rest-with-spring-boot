@@ -1,5 +1,7 @@
 cors:
   originPatterns: http://localhost:3000,http://localhost:8081,https://erudio.com.br
+server:
+  port: 8888
 security:
   jwt:
     token:
@@ -7,10 +9,7 @@ security:
       expire-length: 3600000
 spring:
   datasource:    
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/rest_with_spring_boot_erudio?useTimezone=True&serverTimezone=UTC
-    username: root
-    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver    
   jpa:
     hibernate:
       ddl-auto: none
@@ -19,12 +18,6 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
     show-sql: false
 springdoc:
-  pathsToMatch:
-    - /auth/**
-    - /api/**/v1/**
+  pathsToMatch: /api/**/v1/**
   swagger-ui:
     use-root-path: true
-logging:
-  level:
-    org.springframework.security: TRACE
-

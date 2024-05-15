@@ -1,4 +1,4 @@
-package com.example.securityJwt;
+package com.example.security.jwt;
 
 import java.util.Base64;
 import java.util.Date;
@@ -17,9 +17,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+
 import com.example.data.vo.v1.security.TokenVO;
 import com.example.exceptions.InvalidJwtAuthenticationException;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 
