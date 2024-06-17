@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.controllers.PersonController;
 import com.example.data.vo.v1.PersonVO;
@@ -78,6 +79,19 @@ public class PersonServices {
 		
 		Person entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No record found for this ID"));						
 		repository.delete(entity);
+	}
+
+	@Transactional //operações que não são nativas do spring data precisam dessa anotação
+	public PersonVO disablePerson(Long id) {
+		
+		logger.info("Disabling a person");
+		
+		repository.disablePerson(id);
+		
+		var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No record found for this ID"));
+		var vo = DozerMapper.parseObject(entity, PersonVO.class);
+		vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());		
+		return vo;
 	}
 
 }
