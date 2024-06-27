@@ -3,7 +3,7 @@ cors:
 server:
   port: 8888
 file:
-  upload-dir: ~/Documents/Codes/java/spring/cursoErudio
+  upload-dir: ../../uploads
 security:
   jwt:
     token:
